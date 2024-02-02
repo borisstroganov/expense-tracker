@@ -24,15 +24,25 @@ interface CustomRequest extends Request {
 }
 
 function authenticateToken(req: CustomRequest, res: Response, next: NextFunction) {
-    const token = req.headers['authorization'];
-
+    const token = req.headers['authorization']?.split(" ")[1];
+    
     if (!token) return res.sendStatus(401);
 
     jwt.verify(token, secretKey, (err, user) => {
-        if (err) return res.sendStatus(403);
+        if (err) return res.status(403).json({ message: err });;
         req.user = user;
         next();
     });
+    // const token = req.cookies.token;
+
+    // try {
+    //     const user = jwt.verify(token, secretKey);
+    //     req.user = user;
+    //     next();
+    // } catch (err) {
+    //     res.clearCookie("token");
+    //     return res.status(403).json({ message: err });
+    // }
 }
 
 app.post("/register", (req: Request, res: Response) => {
@@ -95,9 +105,19 @@ app.post("/login", async (req: Request, res: Response) => {
         password,
     } = req.body as types.LoginRequest;
 
+    if (!checkUserExists(email)) {
+        return res.status(401).json({
+            message: "Invalid email."
+        })
+    }
+
     const isPasswordValid = bcrypt.compareSync(password, getPassword(email))
     if (isPasswordValid) {
         const token = jwt.sign({ userEmail: email }, secretKey, { expiresIn: '1h' });
+
+        res.cookie("token", token, {
+            httpOnly: true,
+        })
 
         res.json({
             email: email,
@@ -141,7 +161,7 @@ app.post("/changePassword", authenticateToken, (req: CustomRequest, res: Respons
     }
 
     const isPasswordValid = bcrypt.compareSync(password, getPassword(userEmail))
-    if (isPasswordValid) {
+    if (!isPasswordValid) {
         return res.status(400).json({
             message: "Invalid password."
         })

@@ -51,17 +51,6 @@ export function getPassword(email: string): string {
     return user[0].password;
 }
 
-// export async function checkPassword(email: string, password: string): Promise<boolean> {
-//     const hashedPassword = await hash(password);
-//     const user = query<User>(`
-//         SELECT *
-//         FROM user
-//         WHERE email = ? AND password = ?;
-//     `, [email, hashedPassword]);
-
-//     return user.length > 0;
-// }
-
 export function checkUserExists(email: string): boolean {
     const user = query<User>(`
         SELECT *
