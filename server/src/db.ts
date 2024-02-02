@@ -21,4 +21,5 @@ export function createTables(): void {
         flag: 'r',
     });
     db.exec(schema);
+    console.log(`Database Tables Created`)
 }
