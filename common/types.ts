@@ -11,7 +11,16 @@ export type Expense = {
     type: string,
     description: string,
     date: string,
-    email: string,
+    userEmail: string,
+    budgetId: string,
+}
+
+export type Budget = {
+    id: string,
+    amount: number,
+    balance: number,
+    date: string,
+    userEmail: string,
 }
 
 export type RegisterRequest = {

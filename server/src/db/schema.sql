@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS budget
 (
     id        TEXT              NOT NULL,
     amount    INTEGER DEFAULT 0 NOT NULL,
+    balance   INTEGER           NOT NULL,
     date      DATE              NOT NULL,
     userEmail TEXT              NOT NULL,
 
@@ -25,7 +26,7 @@ CREATE TABLE IF NOT EXISTS expense
     description TEXT DEFAULT '',
     date        DATETIME NOT NULL,
     userEmail   TEXT     NOT NULL,
-    budgetId    TEXT     NOT NULL,
+    budgetId    TEXT,
 
     PRIMARY KEY (id),
     FOREIGN KEY (userEmail) REFERENCES user (email),
