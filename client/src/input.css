@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+    @apply flex justify-center px-4 py-2 m-2 border-2 border-slate-400 rounded-lg shadow-lg shadow-gray-900 hover:shadow-gray-700 hover:bg-slate-200 hover:text-gray-700 uppercase text-sm transition ease-out duration-300
+}
+
+.input {
+    @apply bg-white border-2 border-gray-300 rounded shadow-md shadow-gray-900 text-gray-700
+}
