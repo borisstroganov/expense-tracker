@@ -25,7 +25,7 @@ interface CustomRequest extends Request {
 
 function authenticateToken(req: CustomRequest, res: Response, next: NextFunction) {
     const token = req.headers['authorization']?.split(" ")[1];
-    
+
     if (!token) return res.sendStatus(401);
 
     jwt.verify(token, secretKey, (err, user) => {
@@ -75,9 +75,16 @@ app.post("/register", (req: Request, res: Response) => {
     }
 
     createUser(email, name, password);
+    const token = jwt.sign({ userEmail: email }, secretKey, { expiresIn: '1h' });
+
+    res.cookie("token", token, {
+        httpOnly: true,
+    })
+
     res.json({
         email: email,
-        name: name
+        name: getName(email),
+        token: token
     } as types.RegisterResponse)
 });
 

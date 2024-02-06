@@ -6,7 +6,7 @@ const LandingPage: React.FC = () => {
 
     return (
         <div className='bg-slate-700 h-screen flex flex-col items-center'>
-            <h1 className='text-purple-500 text-3xl font-bold uppercase p-4'>
+            <h1 className='text-purple-500 text-3xl font-bold uppercase p-4 mt-20'>
                 <span>Expense Tracker</span>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
                     className="w-8 h-8 hidden md:inline-block ml-2">
@@ -20,7 +20,7 @@ const LandingPage: React.FC = () => {
                             <p className='flex justify-center text-xl font-semibold p-2'>User is Authenticated with Token: {userToken}</p>
                         </div>
                     ) : (
-                        <div className='grid md:grid-cols-2'>
+                        <div className='lex items-center'>
                             <p className='flex justify-center text-xl font-semibold p-2'>User is Not Authenticated</p>
                         </div>
                     )}

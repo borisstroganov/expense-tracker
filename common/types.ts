@@ -36,6 +36,7 @@ export type RegisterRequest = {
 export type RegisterResponse = {
     email: string;
     name: string;
+    token: string;
 }
 
 export type LoginRequest = {
