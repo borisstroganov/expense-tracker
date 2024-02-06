@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../AuthContext';
 
-import { login } from './services/login'
+import { login } from '../services/login'
 
 const Login: React.FC = () => {
     const { loginContext } = useAuth();
@@ -35,8 +35,8 @@ const Login: React.FC = () => {
                         type={togglePasswordValue ? "password" : "text"} value={passwordValue}
                         onChange={(e) => setPasswordValue(e.target.value)} />
                     {togglePasswordValue
-                        ? <div className='flex justify-end px-1 mr-1 bg-gray-500 hover:bg-gray-600 rounded-full text-gray-300 text-xs 
-                        absolute top-1/4 right-0'
+                        ? <div className='flex justify-end px-1 mr-1 bg-gray-500 hover:bg-gray-600 transform hover:scale-105 
+                        rounded-full text-gray-300 text-xs absolute top-1/4 right-0 transition ease-out duration-300'
                             onClick={() => setTogglePasswordValue(!togglePasswordValue)}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                                 className="w-4 h-4 cursor-pointer">
@@ -44,8 +44,8 @@ const Login: React.FC = () => {
                                 <path fillRule="evenodd" d="M1.38 8.28a.87.87 0 0 1 0-.566 7.003 7.003 0 0 1 13.238.006.87.87 0 0 1 0 .566A7.003 7.003 0 0 1 1.379 8.28ZM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" clipRule="evenodd" />
                             </svg>
                         </div>
-                        : <div className='flex justify-end px-1 mr-1 bg-gray-500 hover:bg-gray-600 rounded-full text-gray-300 text-xs 
-                        absolute top-1/4 right-0'
+                        : <div className='flex justify-end px-1 mr-1 bg-gray-500 hover:bg-gray-600 transform hover:scale-105 
+                        rounded-full text-gray-300 text-xs absolute top-1/4 right-0 transition ease-out duration-300'
                             onClick={() => setTogglePasswordValue(!togglePasswordValue)}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                                 className="w-4 h-4 cursor-pointer">
