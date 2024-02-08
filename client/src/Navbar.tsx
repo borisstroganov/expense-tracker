@@ -14,9 +14,9 @@ const Navbar: React.FC = () => {
                 <li className='mx-2 px-2 py-1 border-2 rounded-md'>
                     <Link to="register">Register</Link>
                 </li>
-                <li className='mx-2 px-2 py-1 border-2 rounded-md'>
+                {/* <li className='mx-2 px-2 py-1 border-2 rounded-md'>
                     <Link to="logout">Logout</Link>
-                </li>
+                </li> */}
             </ul>
         </nav>
     );

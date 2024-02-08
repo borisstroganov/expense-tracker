@@ -23,21 +23,24 @@ const Login: React.FC = () => {
 
     return (
         <div className='bg-slate-700 h-screen flex flex-col justify-center items-center'>
-            <div className='flex flex-col items-center bg-slate-800 w-fit px-4 pb-4 m-6 rounded-lg shadow-lg text-white'>
-                <div className='flex flex-col items-center mt-4'>
-                    <label className='p-2' htmlFor="email">Email:</label>
+            <div className='flex flex-col items-center bg-slate-800 w-fit px-4 pb-4 m-6 rounded-lg shadow-lg text-white font-medium'>
+                <h1 className='text-2xl font-bold pt-4'>
+                    <span>Sign In to Your Account</span>
+                </h1>
+                <div className='flex flex-col mt-4'>
+                    <label className='p-2 mr-auto' htmlFor="email">Email:</label>
                     <input className='input' autoFocus type="email" name="email"
-                        value={emailValue} onChange={(e) => setEmailValue(e.target.value)} />
+                        value={emailValue} onChange={(e) => setEmailValue(e.target.value)} placeholder='name@company.com' />
                 </div>
-                <div className='flex flex-col items-center mt-4'>
-                    <label className='p-2' htmlFor="password">Password:</label>
+                <div className='flex flex-col mt-4'>
+                    <label className='p-2 mr-auto' htmlFor="password">Password:</label>
                     <div className='flex flex-col relative'>
                         <input className='input'
                             type={togglePasswordValue ? "password" : "text"} value={passwordValue}
-                            onChange={(e) => setPasswordValue(e.target.value)} />
+                            onChange={(e) => setPasswordValue(e.target.value)} placeholder='••••••••' />
                         {togglePasswordValue
                             ? <div className='flex justify-end px-1 mr-1 bg-gray-500 hover:bg-gray-600 transform hover:scale-105 
-                        rounded-full text-gray-300 text-xs absolute top-1/4 right-0 transition ease-out duration-300'
+                        rounded-full text-gray-300 text-xs absolute top-1/4 right-2 transition ease-out duration-300'
                                 onClick={() => setTogglePasswordValue(!togglePasswordValue)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                                     className="w-4 h-4 cursor-pointer">
@@ -46,7 +49,7 @@ const Login: React.FC = () => {
                                 </svg>
                             </div>
                             : <div className='flex justify-end px-1 mr-1 bg-gray-500 hover:bg-gray-600 transform hover:scale-105 
-                        rounded-full text-gray-300 text-xs absolute top-1/4 right-0 transition ease-out duration-300'
+                        rounded-full text-gray-300 text-xs absolute top-1/4 right-2 transition ease-out duration-300'
                                 onClick={() => setTogglePasswordValue(!togglePasswordValue)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                                     className="w-4 h-4 cursor-pointer">
@@ -56,14 +59,14 @@ const Login: React.FC = () => {
 
                             </div>}
                     </div>
-                    <div className='flex flex-col md:flex-row justify-center items-center mt-6 mb-2 text-sm font-light'>
-                        <span>
-                            Don't have an account yet?
-                        </span>
-                        <a className='ml-2 font-bold underline cursor-pointer'>
-                            Sign-Up
-                        </a>
-                    </div>
+                </div>
+                <div className='flex flex-col md:flex-row justify-center items-center mt-6 mb-2 text-sm font-light'>
+                    <span>
+                        Don't have an account yet?
+                    </span>
+                    <a className='ml-2 font-bold underline cursor-pointer'>
+                        Sign-Up
+                    </a>
                 </div>
                 <button className='btn'
                     onClick={handleLogin}>Login</button>

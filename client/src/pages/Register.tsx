@@ -30,32 +30,58 @@ const Register: React.FC = () => {
 
     return (
         <div className='bg-slate-700 h-screen flex flex-col justify-center items-center'>
-            <div className='flex flex-col items-center bg-slate-800 w-fit px-4 pb-4 m-6 rounded-lg shadow-lg text-white'>
+            <div className='flex flex-col items-center bg-slate-800 w-fit px-8 pb-4 m-6 rounded-lg shadow-lg text-white font-medium'>
+                <h1 className='text-2xl font-bold pt-4'>
+                    <span>Create a New Account</span>
+                </h1>
                 <div className='flex flex-col items-center mt-4'>
-                    <label className='p-2' htmlFor="email">Email:</label>
+                    <label className='p-2 mr-auto' htmlFor="email">Email:</label>
                     <input className='input' autoFocus type="email" name="email"
-                        value={emailValue} onChange={(e) => setEmailValue(e.target.value)} placeholder='name@company.com' />
-                    {!emailRegex.test(emailValue)
-                        ? <span className='text-red-500'>Valid Email Address</span>
-                        : ""}
+                        value={emailValue} onChange={(e) => setEmailValue(e.target.value)} placeholder='name@company.com' required={true} />
+                    <div className='regex bg-slate-700 rounded-md'>
+                        <span className={`opacity-80 ${emailRegex.test(emailValue) ? 'text-green-500' : ''}`}>
+                            Valid Email Address
+                        </span>
+                        {emailRegex.test(emailValue)
+                            ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                className="w-5 h-5 stroke-green-500 stroke-[1.5]">
+                                <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                            </svg>
+                            : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                className="w-5 h-5 mt-1 stroke-rose-500 stroke-[1.5]">
+                                <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                            </svg>}
+                    </div>
                 </div>
                 <div className='flex flex-col items-center mt-4'>
-                    <label className='p-2' htmlFor="email">Name:</label>
-                    <input className='input' autoFocus type="email" name="email"
-                        value={nameValue} onChange={(e) => setNameValue(e.target.value)} placeholder='Name Surname'/>
-                    {!nameLengthRegex.test(nameValue)
-                        ? <span className='text-red-500'>{'>'}= 5 Characters</span>
-                        : ""}
+                    <label className='p-2 mr-auto' htmlFor="email">Name:</label>
+                    <input className='input' type="email" name="email"
+                        value={nameValue} onChange={(e) => setNameValue(e.target.value)} placeholder='John Doe' required={true} />
+                    <div className='regex bg-slate-700 rounded-md'>
+                        <span className={`opacity-80 ${nameLengthRegex.test(nameValue) ? 'text-green-500' : ''}`}>
+                            5 Characters
+                        </span>
+                        {nameLengthRegex.test(nameValue)
+                            ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                className="w-5 h-5 stroke-green-500 stroke-[1.5]">
+                                <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                            </svg>
+                            : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                className="w-5 h-5 mt-1 stroke-rose-500 stroke-[1.5]">
+                                <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                            </svg>}
+                    </div>
                 </div>
                 <div className='flex flex-col items-center mt-4'>
-                    <label className='p-2' htmlFor="password">Password:</label>
+                    <label className='p-2 mr-auto' htmlFor="password">Password:</label>
                     <div className='flex flex-col items-center relative'>
                         <input className='input'
                             type={togglePasswordValue ? "password" : "text"} value={passwordValue}
-                            onChange={(e) => setPasswordValue(e.target.value)} placeholder='••••••••'/>
+                            onChange={(e) => setPasswordValue(e.target.value)}
+                            placeholder={togglePasswordValue ? '••••••••' : 'Password123'} required={true} />
                         {togglePasswordValue
                             ? <div className='flex justify-end px-1 mr-1 bg-gray-500 hover:bg-gray-600 transform hover:scale-105 
-                        rounded-full text-gray-300 text-xs absolute top-1.5 right-0 transition ease-out duration-300'
+                        rounded-full text-gray-300 text-xs absolute top-1.5 right-2 transition ease-out duration-300'
                                 onClick={() => setTogglePasswordValue(!togglePasswordValue)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                                     className="w-4 h-4 cursor-pointer">
@@ -64,7 +90,7 @@ const Register: React.FC = () => {
                                 </svg>
                             </div>
                             : <div className='flex justify-end px-1 mr-1 bg-gray-500 hover:bg-gray-600 transform hover:scale-105 
-                        rounded-full text-gray-300 text-xs absolute top-1.5 right-0 transition ease-out duration-300'
+                        rounded-full text-gray-300 text-xs absolute top-1.5 right-2 transition ease-out duration-300'
                                 onClick={() => setTogglePasswordValue(!togglePasswordValue)}>
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
                                     className="w-4 h-4 cursor-pointer">
@@ -72,18 +98,64 @@ const Register: React.FC = () => {
                                     <path d="m7.812 10.994 1.816 1.816A7.003 7.003 0 0 1 1.38 8.28a.87.87 0 0 1 0-.566 6.985 6.985 0 0 1 1.113-2.039l2.513 2.513a3 3 0 0 0 2.806 2.806Z" />
                                 </svg>
                             </div>}
-                        {!lengthRegex.test(passwordValue)
-                            ? <span className='text-red-500'>{'>'}= 8 Characters</span>
-                            : ""}
-                        {!uppercaseRegex.test(passwordValue)
-                            ? <span className='text-red-500'>Uppercase Letter</span>
-                            : ""}
-                        {!lowercaseRegex.test(passwordValue)
-                            ? <span className='text-red-500'>Lowercase Letter</span>
-                            : ""}
-                        {!numbersRegex.test(passwordValue)
-                            ? <span className='text-red-500'>A Number</span>
-                            : ""}
+                        <div className='flex flex-col w-11/12 justify-center items-center mt-2 bg-slate-700 rounded-md'>
+                            <div className='flex justify-between items-center w-11/12 mt-1 px-1 border-b-2 border-slate-500'>
+                                <span className={`opacity-80 ${lengthRegex.test(passwordValue) ? 'text-green-500' : ''}`}>
+                                    8 Characters
+                                </span>
+                                {lengthRegex.test(passwordValue)
+                                    ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        className="w-5 h-5 stroke-green-500 stroke-[1.5]">
+                                        <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                                    </svg>
+                                    : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        className="w-5 h-5 mt-1 stroke-rose-500 stroke-[1.5]">
+                                        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                                    </svg>}
+                            </div>
+                            <div className='flex justify-between items-center w-11/12 mt-1 px-1 border-b-2 border-slate-500'>
+                                <span className={`opacity-80 ${uppercaseRegex.test(passwordValue) ? 'text-green-500' : ''}`}>
+                                    Uppercase Letter
+                                </span>
+                                {uppercaseRegex.test(passwordValue)
+                                    ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        className="w-5 h-5 stroke-green-500 stroke-[1.5]">
+                                        <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                                    </svg>
+                                    : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        className="w-5 h-5 mt-1 stroke-rose-500 stroke-[1.5]">
+                                        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                                    </svg>}
+                            </div>
+                            <div className='flex justify-between items-center w-11/12 mt-1 px-1 border-b-2 border-slate-500'>
+                                <span className={`opacity-80 ${lowercaseRegex.test(passwordValue) ? 'text-green-500' : ''}`}>
+                                    Lowercase Letter
+                                </span>
+                                {lowercaseRegex.test(passwordValue)
+                                    ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        className="w-5 h-5 stroke-green-500 stroke-[1.5]">
+                                        <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                                    </svg>
+                                    : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        className="w-5 h-5 mt-1 stroke-rose-500 stroke-[1.5]">
+                                        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                                    </svg>}
+                            </div>
+                            <div className='flex justify-between items-center w-11/12 my-1 px-1'>
+                                <span className={`opacity-80 ${numbersRegex.test(passwordValue) ? 'text-green-500' : ''}`}>
+                                    Number
+                                </span>
+                                {numbersRegex.test(passwordValue)
+                                    ? <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        className="w-5 h-5 stroke-green-500 stroke-[1.5]">
+                                        <path fillRule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clipRule="evenodd" />
+                                    </svg>
+                                    : <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                        className="w-5 h-5 mt-1 stroke-rose-500 stroke-[1.5]">
+                                        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+                                    </svg>}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <button className='btn'
